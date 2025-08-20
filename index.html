@@ -1,0 +1,486 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Behind The Injury Link Hub</title>
+    <style>
+        :root {
+        --primary: #000000;   
+        --secondary: #cc0000; 
+        --light: #ffffff;     
+        --dark: #1a1a1a;     
+        --accent: #e60000;    
+        --text: #ffffff;      
+        --white: #ffffff;
+        --therapy-green: #330000; 
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        
+        body {
+            background-color: var(--light);
+            color: var(--text);
+            line-height: 1.6;
+            background-color: #f8f9fa;
+            background-image: 
+                radial-gradient(circle at 10% 20%, rgba(165, 225, 173, 0.1) 0%, transparent 20%),
+                radial-gradient(circle at 90% 80%, rgba(165, 225, 173, 0.1) 0%, transparent 20%);
+            min-height: 100vh;
+            padding: 20px;
+            overflow-x: hidden;
+            position: relative;
+        }
+
+        /* Physical Therapy Background Elements */
+        body::before {
+            content: "";
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-image: 
+                url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="200" height="200" viewBox="0 0 200 200"><path fill="%23a5e1ad" fill-opacity="0.08" d="M50 100c0-27.6 22.4-50 50-50s50 22.4 50 50-22.4 50-50 50-50-22.4-50-50z"/></svg>'),
+                url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="100" height="100" viewBox="0 0 100 100"><path fill="%231f6f78" fill-opacity="0.05" d="M50 10L20 90L80 30L20 30L80 90z"/></svg>'),
+                url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="120" height="120" viewBox="0 0 120 120"><circle cx="60" cy="60" r="40" fill="%233baea0" fill-opacity="0.06"/></svg>');
+            background-size: 100px 100px, 70px 70px, 150px 150px;
+            background-position: 10% 20%, 90% 15%, 30% 80%;
+            background-repeat: no-repeat;
+            pointer-events: none;
+            z-index: -1;
+        }
+
+        /* Animated Exercise Icons */
+        .therapy-icon {
+            position: fixed;
+            opacity: 0.08;
+            z-index: -1;
+            animation: float 15s infinite linear;
+        }
+        
+        @keyframes float {
+            0% { transform: translateY(0) rotate(0deg); }
+            50% { transform: translateY(-20px) rotate(180deg); }
+            100% { transform: translateY(0) rotate(360deg); }
+        }
+        
+        .therapy-icon.one {
+            top: 10%;
+            left: 5%;
+            width: 80px;
+            height: 80px;
+            background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="%235e8b7e"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm0 18c-4.41 0-8-3.59-8-8s3.59-8 8-8 8 3.59 8 8-3.59 8-8 8z"/><path d="M12 17c1.1 0 2-.9 2-2s-.9-2-2-2-2 .9-2 2 .9 2 2 2z"/></svg>');
+            background-repeat: no-repeat;
+            animation-delay: 0s;
+        }
+        
+        .therapy-icon.two {
+            top: 30%;
+            right: 7%;
+            width: 60px;
+            height: 60px;
+            background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="%233baea0"><path d="M12 5.99L19.53 19H4.47L12 5.99M12 2L3 20h18L12 2zm1 14h-2v2h2v-2zm0-6h-2v4h2v-4z"/></svg>');
+            background-repeat: no-repeat;
+            animation-delay: 2s;
+        }
+        
+        .therapy-icon.three {
+            bottom: 20%;
+            left: 15%;
+            width: 100px;
+            height: 100px;
+            background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="%231f6f78"><path d="M19 3l-6 6 2 2 6-6V3zm-9 3c0-2.21-1.79-4-4-4S2 3.79 2 6s1.79 4 4 4c.75 0 1.44-.21 2.03-.56L10 12l-2 2-3.03-3.03c-.35.59-.56 1.28-.56 2.03 0 2.21 1.79 4 4 4s4-1.79 4-4l6-6c0 2.21 1.79 4 4 4s4-1.79 4-4-1.79-4-4-4-4 1.79-4 4l-2 2z"/></svg>');
+            background-repeat: no-repeat;
+            animation-delay: 4s;
+        }
+        
+        .therapy-icon.four {
+            bottom: 15%;
+            right: 10%;
+            width: 70px;
+            height: 70px;
+            background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="%235e8b7e"><path d="M12 3c-4.97 0-9 4.03-9 9s4.03 9 9 9 9-4.03 9-9-4.03-9-9-9zm0 16c-3.86 0-7-3.14-7-7s3.14-7 7-7 7 3.14 7 7-3.14 7-7 7z"/><path d="M12 7c-2.76 0-5 2.24-5 5s2.24 5 5 5 5-2.24 5-5-2.24-5-5-5z"/></svg>');
+            background-repeat: no-repeat;
+            animation-delay: 6s;
+        }
+
+        .container {
+            max-width: 600px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+        
+        .profile-card {
+            background-color: rgba(255, 255, 255, 0.95);
+            border-radius: 15px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
+            overflow: hidden;
+            margin-bottom: 30px;
+            transition: transform 0.3s ease;
+            backdrop-filter: blur(5px);
+            position: relative;
+            z-index: 1;
+        }
+        
+        .profile-card:hover {
+            transform: translateY(-5px);
+        }
+        
+        .profile-image {
+            width: 150px;
+            height: 150px;
+            border-radius: 50%;
+            object-fit: cover;
+            border: 5px solid var(--accent);
+            margin: 0 auto;
+            display: block;
+            margin-top: 30px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+        }
+        
+        .profile-header {
+            padding: 30px;
+            text-align: center;
+            background: linear-gradient(135deg, var(--primary), var(--dark));
+            color: white;
+            position: relative;
+        }
+        
+        .profile-header h1 {
+            font-size: 28px;
+            margin-bottom: 10px;
+            font-weight: 700;
+        }
+        
+        .profile-header p {
+            font-size: 16px;
+            opacity: 0.9;
+        }
+
+        .social-icons {
+            margin-top: 15px;
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+        }
+
+        .social-icons a svg {
+            transition: transform 0.2s ease, fill 0.2s ease;
+        }
+
+        .social-icons a:hover svg {
+            transform: scale(1.2);
+            fill: var(--accent); 
+        }
+        
+        .links-container {
+            padding: 20px;
+            position: relative;
+        }
+        
+        .link-item {
+            display: flex;
+            align-items: center;
+            background-color: var(--white);
+            border-radius: 10px;
+            padding: 15px;
+            margin-bottom: 15px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+            transition: all 0.3s ease;
+            border-left: 5px solid var(--accent);
+        }
+        
+        .link-item:hover {
+            transform: translateX(5px);
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
+            background-color: var(--therapy-green);
+        }
+        
+        .link-icon {
+            width: 40px;
+            height: 40px;
+            margin-right: 15px;
+            border-radius: 50%;
+            background-color: var(--accent);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--dark);
+            font-size: 20px;
+            font-weight: bold;
+        }
+        
+        .link-content {
+            flex: 1;
+        }
+        
+        .link-content h3 {
+            font-size: 18px;
+            margin-bottom: 5px;
+            color: var(--dark);
+        }
+        
+        .link-content p {
+            font-size: 14px;
+            opacity: 0.8;
+        }
+
+        .link-item:hover .link-content h3 {
+        color: white;
+        }
+
+        .link-item:hover .link-content p {
+         color: #f0f0f0; /* softer white for description */
+        }
+        
+        .badges {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 10px;
+            margin-top: 20px;
+        }
+        
+        .badge {
+            background-color: var(--primary);
+            color: white;
+            padding: 8px 15px;
+            border-radius: 20px;
+            font-size: 12px;
+            font-weight: bold;
+            transition: all 0.3s ease;
+        }
+
+        .badge:hover {
+            background-color: var(--dark);
+            transform: translateY(-2px);
+        }
+        
+        .therapy-loader {
+            width: 100%;
+            height: 5px;
+            background-color: var(--accent);
+            margin: 30px 0;
+            border-radius: 5px;
+            overflow: hidden;
+            position: relative;
+        }
+        
+        .therapy-loader::after {
+            content: '';
+            position: absolute;
+            left: 0;
+            top: 0;
+            height: 100%;
+            width: 20%;
+            background-color: var(--secondary);
+            animation: therapy-load 2s infinite ease-in-out;
+        }
+        
+        @keyframes therapy-load {
+            0% { left: -20%; }
+            100% { left: 120%; }
+        }
+        
+        footer {
+            text-align: center;
+            margin-top: 40px;
+            padding: 20px;
+            font-size: 14px;
+            color: var(--dark);
+        }
+        
+        @media (max-width: 600px) {
+            .container {
+                padding: 10px;
+            }
+            
+            .profile-header {
+                padding: 20px;
+            }
+            
+            .profile-header h1 {
+                font-size: 24px;
+            }
+            
+            .profile-image {
+                width: 120px;
+                height: 120px;
+            }
+
+            .therapy-icon {
+                display: none;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="therapy-icon one"></div>
+    <div class="therapy-icon two"></div>
+    <div class="therapy-icon three"></div>
+    <div class="therapy-icon four"></div>
+    
+    <div class="container">
+        <div class="profile-card">
+            <div class="profile-header">
+                <img src="logo.jpeg" alt="Professional physical therapist portrait with white coat and stethoscope in a rehabilitation clinic" class="profile-image">
+                <h1>Behind The Injury</h1>
+                <p>We slow it down so you don't break it down 🤕🩼</p>
+
+                <!-- 🔹 Social icons row -->
+                <div class="social-icons">
+
+            <!-- Instagram -->
+            <a href="https://www.instagram.com/behindtheinjury1?igsh=MWFiZXU1OGc0eGZpbQ==" target="_blank" aria-label="Instagram">
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="28" height="28">
+                    <path fill="white" d="M7.75 2h8.5A5.75 5.75 0 0 1 22 7.75v8.5A5.75 5.75 0 0 1 16.25 22h-8.5A5.75 5.75 0 0 1 2 16.25v-8.5A5.75 5.75 0 0 1 7.75 2zm0 1.5A4.25 4.25 0 0 0 3.5 7.75v8.5A4.25 4.25 0 0 0 7.75 20.5h8.5a4.25 4.25 0 0 0 4.25-4.25v-8.5A4.25 4.25 0 0 0 16.25 3.5h-8.5zm8.75 2a.75.75 0 0 1 .102 1.493L16.5 7h-.01a.75.75 0 0 1 .01-1.5zm-4.75 2a5.25 5.25 0 1 1 0 10.5a5.25 5.25 0 0 1 0-10.5zm0 1.5a3.75 3.75 0 1 0 0 7.5a3.75 3.75 0 0 0 0-7.5z"/>
+                </svg>
+                </a>
+
+            <!-- YouTube -->
+            <a href="https://www.youtube.com/@behindtheinjury1" target="_blank" aria-label="YouTube">
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="28" height="28">
+                    <path fill="white" d="M21.8 8s-.2-1.4-.8-2c-.8-.8-1.7-.8-2.1-.9C16 5 12 5 12 5h0s-4 0-6.9.1c-.4 0-1.3.1-2.1.9c-.6.6-.8 2-.8 2S2 9.6 2 11.3v1.4C2 14.4 2.2 16 2.2 16s.2 1.4.8 2c.8.8 1.9.8 2.4.9c1.7.1 6.9.1 6.9.1s4 0 6.9-.1c.4 0 1.3 0 2.1-.9c.6-.6.8-2 .8-2s.2-1.6.2-3.3v-1.4c0-1.7-.2-3.3-.2-3.3zM10 14.7V9.3l5.4 2.7L10 14.7z"/>
+                </svg>
+                </a>
+
+            <!-- TikTok -->
+            <a href="https://www.tiktok.com/@behindtheinjury?_t=ZS-8z2JyVztCTP&_r=1" target="_blank" aria-label="TikTok">
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 48 48" width="28" height="28">
+                    <path fill="white" d="M31.9 6.1c1.2 0 2.3 0 3.5.1c.2 1.8.9 3.5 2 5c1.1 1.4 2.6 2.4 4.3 3c-.1 1.1-.3 2.2-.5 3.3c-1.9-.1-3.7-.7-5.3-1.7V29c0 3-1 5.7-2.9 8c-1.9 2.2-4.3 3.6-7 4.2c-3.1.7-6.4.3-9.2-1.2s-4.9-3.9-6-6.8c-.7-1.9-1-4-1-6c0-2.4.6-4.7 1.7-6.7c1.6-3 4.4-5.3 7.7-6.2c2-.6 4.1-.7 6.1-.4v6.8c-1.1-.3-2.4-.3-3.5 0c-1.7.4-3.1 1.5-4 3c-.5.9-.8 2-.8 3c0 1.1.2 2.2.8 3.1c.7 1.2 1.9 2.1 3.3 2.5c1.4.4 3 .3 4.3-.4c.9-.5 1.6-1.3 2.1-2.2c.3-.6.4-1.3.5-2V6.1h4.3z"/>
+                </svg>
+                </a>
+
+            <!-- WhatsApp -->
+            <a href="https://wa.link/3a475k" target="_blank" aria-label="WhatsApp">
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32" width="28" height="28">
+                    <path fill="white" d="M16 2.9c-7.3 0-13.1 5.8-13.1 13.1c0 2.3.6 4.6 1.7 6.6L2.9 29l6.6-1.7c1.9 1.1 4.2 1.7 6.6 1.7c7.3 0 13.1-5.8 13.1-13.1S23.3 2.9 16 2.9zm0 23.6c-2.1 0-4.2-.6-6-1.8l-.4-.2l-3.9 1l1-3.8l-.2-.4c-1.1-1.8-1.7-3.9-1.7-6c0-6.5 5.3-11.8 11.8-11.8S27.8 9.5 27.8 16S22.5 26.5 16 26.5zm6.2-8.5c-.3-.1-1.8-.9-2.1-1c-.3-.1-.5-.1-.7.1s-.8 1-.9 1.2c-.2.2-.3.2-.6.1c-.3-.1-1.3-.5-2.5-1.6c-.9-.8-1.6-1.7-1.8-2c-.2-.3 0-.5.1-.6s.3-.3.4-.5c.1-.2.2-.3.3-.5c.1-.2 0-.4 0-.5c0-.1-.7-1.7-1-2.3c-.3-.6-.5-.5-.7-.5h-.6c-.2 0-.5.1-.8.4c-.3.3-1 1-1 2.4s1 2.8 1.1 3c.1.2 2.1 3.3 5.1 4.6c.7.3 1.3.5 1.8.6c.8.3 1.6.3 2.2.2c.7-.1 1.8-.7 2-1.3c.2-.6.2-1.1.1-1.3c-.2-.2-.5-.3-.7-.4z"/>
+                </svg>
+                </a>
+                </div>
+        </div>
+            
+            <div class="links-container">
+                <!-- Therapy loader animation shaped like a joint movement path -->
+                <div class="therapy-loader"></div>
+                
+
+                <!-- Social Links -->
+<div class="link-item" onclick="window.open('https://www.instagram.com/behindtheinjury1/?igsh=MWFiZXU1OGc0eGZpbQ%3D%3D#')">
+    <div class="link-icon">
+        <!-- Instagram Logo -->
+        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="white" viewBox="0 0 24 24">
+            <path d="M7 2C4.243 2 2 4.243 2 7v10c0 2.757 2.243 5 5 5h10c2.757 0 5-2.243 5-5V7c0-2.757-2.243-5-5-5H7zm10 2c1.654 0 3 1.346 3 3v10c0 1.654-1.346 3-3 3H7c-1.654 0-3-1.346-3-3V7c0-1.654 1.346-3 3-3h10zm-5 3a5 5 0 100 10 5 5 0 000-10zm0 2a3 3 0 110 6 3 3 0 010-6zm4.5-.5a1.5 1.5 0 11-3 0 1.5 1.5 0 013 0z"/>
+        </svg>
+    </div>
+    <div class="link-content">
+        <h3>Instagram</h3>
+        <p>Daily rehab exercises & success stories</p>
+    </div>
+</div>
+
+<div class="link-item" onclick="window.open('https://www.instagram.com/_amr.khalid/?igsh=aDFycGQ0eDNseWd1#')">
+    <div class="link-icon">
+        <!-- Personal Instagram Logo -->
+        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="white" viewBox="0 0 24 24">
+            <path d="M7 2C4.243 2 2 4.243 2 7v10c0 2.757 2.243 5 5 5h10c2.757 0 5-2.243 5-5V7c0-2.757-2.243-5-5-5H7zm10 2c1.654 0 3 1.346 3 3v10c0 1.654-1.346 3-3 3H7c-1.654 0-3-1.346-3-3V7c0-1.654 1.346-3 3-3h10zm-5 3a5 5 0 100 10 5 5 0 000-10zm0 2a3 3 0 110 6 3 3 0 010-6zm4.5-.5a1.5 1.5 0 11-3 0 1.5 1.5 0 013 0z"/>
+        </svg>
+    </div>
+    <div class="link-content">
+        <h3>Personal Instagram</h3>
+        <p>Ask Recovery Questions Straight Through Our DMs</p>
+    </div>
+</div>
+
+<div class="link-item" onclick="window.open('https://www.tiktok.com/@behindtheinjury?_t=ZS-8z2JyVztCTP&_r=1')">
+    <div class="link-icon">
+        <!-- TikTok Logo -->
+        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="white" viewBox="0 0 24 24">
+            <path d="M12 2c0 .4 0 .8.1 1.2.3 2.6 2.2 4.7 4.7 5.1.4.1.9.1 1.3.1V6c.9.7 1.9 1.3 3 1.6v3.5c-1.6 0-3.1-.5-4.3-1.4v6.7c0 3.5-2.9 6.4-6.4 6.4S4 20 4 16.5 6.9 10 10.4 10c.4 0 .8 0 1.1.1v3.3c-.4-.2-.7-.2-1.1-.2-1.6 0-2.9 1.3-2.9 2.9s1.3 2.9 2.9 2.9 2.9-1.3 2.9-2.9V2h2.7z"/>
+        </svg>
+    </div>
+    <div class="link-content">
+        <h3>TikTok</h3>
+        <p>Short recovery tips & exercises</p>
+    </div>
+</div>
+
+
+<div class="link-item" onclick="window.open('https://www.youtube.com/@behindtheinjury1')">
+    <div class="link-icon">
+        <!-- YouTube Logo -->
+        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="white" viewBox="0 0 24 24">
+            <path d="M23.5 6.2s-.2-1.6-.8-2.3c-.7-.8-1.5-.8-1.9-.9C17.3 2.7 12 2.7 12 2.7h-.1s-5.3 0-8.8.3c-.4.1-1.2.1-1.9.9-.6.7-.8 2.3-.8 2.3S0 7.9 0 9.6v1.8c0 1.7.2 3.4.2 3.4s.2 1.6.8 2.3c.7.8 1.7.8 2.1.9 1.5.1 6.8.3 6.8.3s5.3 0 8.8-.3c.4-.1 1.2-.1 1.9-.9.6-.7.8-2.3.8-2.3s.2-1.7.2-3.4V9.6c0-1.7-.2-3.4-.2-3.4zM9.6 13.7V8.6l5.3 2.6-5.3 2.5z"/>
+        </svg>
+    </div>
+    <div class="link-content">
+        <h3>YouTube</h3>
+        <p>Therapeutic exercise tutorials</p>
+    </div>
+</div>
+                
+                <!-- Business Resources -->
+
+                <div class="link-item" onclick="window.open('https://wa.link/3a475k')">
+                    <div class="link-icon">
+                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="22" height="22">
+                        <path fill="white" d="M6.6 10.8c1.1 2.1 2.9 3.9 5 5l1.7-1.7c.2-.2.5-.3.8-.2c.9.3 1.9.5 2.9.5c.4 0 .7.3.7.7V20c0 .4-.3.7-.7.7C10.9 20.7 3.3 13.1 3.3 4.7C3.3 4.3 3.6 4 4 4h3.3c.4 0 .7.3.7.7c0 1 .2 2 .5 2.9c.1.3 0 .6-.2.8L6.6 10.8z"/>
+                        </svg>
+                    </div>
+
+                    <div class="link-content">
+                        <h3>Contact Us</h3>
+                        <p>Available for questions</p>
+                    </div>
+                </div>
+                
+                <div class="badges">
+                    <div class="badge">Orthopedic Rehab</div>
+                    <div class="badge">Pain Management</div>
+                    <div class="badge">Recovery Plans</div>
+                </div>
+            </div>
+        </div>
+        
+        <footer>
+            <p>© 2023 Your Physical Therapy Practice. All healing journeys welcome.</p>
+        </footer>
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // Add slight random delay to each link items for playful effect
+            const links = document.querySelectorAll('.link-item');
+            links.forEach((link, index) => {
+                link.style.transitionDelay = `${index * 0.05}s`;
+            });
+
+            // Add a slight pulse animation to badges
+            const badges = document.querySelectorAll('.badge');
+            badges.forEach(badge => {
+                badge.addEventListener('mouseenter', function() {
+                    this.classList.add('pulse');
+                });
+                
+                badge.addEventListener('animationend', function() {
+                    this.classList.remove('pulse');
+                });
+            });
+        });
+
+        // Simple analytics for link clicks
+        document.querySelectorAll('.link-item').forEach(item => {
+            item.addEventListener('click', function() {
+                const linkText = this.querySelector('h3').textContent;
+                console.log(`Clicked on: ${linkText}`);
+            });
+        });
+    </script>
+</body>
+</html>
